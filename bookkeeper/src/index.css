@@ -1,0 +1,50 @@
+.container{
+  max-height: 200px;
+  margin: auto;
+
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  margin: auto;
+  max-width: 100%;
+  padding: 2rem;
+
+}
+
+
+body .record{
+  height: 100%;
+  overflow:scroll;
+  overflow-x: hidden
+}
+
+body .record .container .item_slider .single_record{
+  margin: auto;
+  height:50px;
+  max-width: 100%;
+  display: flex;
+  flex-direction:row;
+  justify-content: space-between;
+  background-color: powderblue;
+}
+
+
+body .record .container .item_slider .single_record > * {
+  margin: 10px 0;
+}
+.record_description{
+  max-width: 50%;
+}
+
+.record_date{
+  max-width: 20%;
+}
+
+.record_amount{
+  max-width: 20%;
+}
+
+.record_delete{
+  max-width: 10%;
+}
