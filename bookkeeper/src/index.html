@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <title>Hello World!</title>
     <link rel="stylesheet" href="index.css">
+    <script defer src="render.js" ></script>
+
+    
   </head>
   <body>
     
@@ -15,55 +18,62 @@
 
 
               <div class="single_record">
-                <h1 class="record_description" style="font-size:1.5vw;">this is longest description i ever made for this project testing</h1>
-                <h1 class="record_date" style="font-size:1.5vw;">Date</h1>
-                <h1 class="record_amount" style="font-size:1.5vw;">in and out 200</h1>
+                <h1 class="record_description" style="font-size:2vw;">this is longest description i ever made for this project testing</h1>
+                <h1 class="record_date" style="font-size:2vw;">Date</h1>
+                <h1 class="record_amount" style="font-size:2vw;">in and out 200</h1>
                 <button class="record_delete" id="Delete">Delete</button>
              </div>
 
+            
              <div class="single_record">
-              <h1 class="record_description" style="font-size:1.5vw;">record description here</h1>
-              <h1 class="record_date" style="font-size:1.5vw;">Date</h1>
-              <h1 class="record_amount" style="font-size:1.5vw;">in and out 200</h1>
+              <h1 class="record_description" style="font-size:2vw;">this is longest description i ever made for this project testing</h1>
+              <h1 class="record_date" style="font-size:2vw;">Date</h1>
+              <h1 class="record_amount" style="font-size:2vw;">in and out 200</h1>
               <button class="record_delete" id="Delete">Delete</button>
-              </div>
+            </div>
+           
+            <div class="single_record">
+              <h1 class="record_description" style="font-size:2vw;">this is longest description i ever made for this project testing</h1>
+              <h1 class="record_date" style="font-size:2vw;">Date</h1>
+              <h1 class="record_amount" style="font-size:2vw;">in and out 200</h1>
+              <button class="record_delete" id="Delete">Delete</button>
+            </div>
+            
+            <div class="single_record">
+              <h1 class="record_description" style="font-size:2vw;">this is longest description i ever made for this project testing</h1>
+              <h1 class="record_date" style="font-size:2vw;">Date</h1>
+              <h1 class="record_amount" style="font-size:2vw;">in and out 200</h1>
+              <button class="record_delete" id="Delete">Delete</button>
+            </div>
+            
+            <div class="single_record">
+              <h1 class="record_description" style="font-size:2vw;">this is longest description i ever made for this project testing</h1>
+              <h1 class="record_date" style="font-size:2vw;">Date</h1>
+              <h1 class="record_amount" style="font-size:2vw;">in and out 200</h1>
+              <button class="record_delete" id="Delete">Delete</button>
+            </div>
 
-              <div class="single_record">
-                <h1 class="record_description" style="font-size:1.5vw;">record description here</h1>
-                <h1 class="record_date" style="font-size:1.5vw;">Date</h1>
-                <h1 class="record_amount" style="font-size:1.5vw;">in and out 200</h1>
-                <button class="record_delete" id="Delete">Delete</button>
-              </div>
-
-              <div class="single_record">
-                <h1 class="record_description" style="font-size:1.5vw;">record description here</h1>
-                <h1 class="record_date" style="font-size:1.5vw;">Date</h1>
-                <h1 class="record_amount" style="font-size:1.5vw;">in and out 200</h1>
-                <button class="record_delete" id="Delete">Delete</button>
-              </div>
-
-              <div class="single_record">
-                <h1 class="record_description" style="font-size:1.5vw;">record description here</h1>
-                <h1 class="record_date" style="font-size:1.5vw;">Date</h1>
-                <h1 class="record_amount" style="font-size:1.5vw;">in and out 200</h1>
-                <button class="record_delete" id="Delete">Delete</button>
-              </div> 
-     
-              <div class="single_record">
-                <h1 class="record_description" style="font-size:1.5vw;">record description here</h1>
-                <h1 class="record_date" style="font-size:1.5vw;">Date</h1>
-                <h1 class="record_amount" style="font-size:1.5vw;">in and out 200</h1>
-                <button class="record_delete" id="Delete">Delete</button>
-              </div>
-
-
-            <div class="record_Total"></div>
+            
 
 
           </div>
+
+          
       </div>
     </section>
     <!--Start record-->
+
+
+
+    <section class="total cost">
+
+      <div class="record_Total">
+        <h1>Total Cost</h1>
+      </div>
+
+
+    </section>
+
 
 
     <!--Start Add New Record-->
@@ -72,21 +82,31 @@
 
         <!--Two text enter bar here, one for naming of the record and one for catregory of the record, and money number-->
         <div class="fillingSection">
-          <div class="namingBar"> </div>
-          <div class="categoryBar"> </div>
-          <div class="moneyBar"> </div>
+
+          <input type="text" id="namingBar" onfocus="this.value=''" value="Name">
+          <input type="text" id="categoryBar" onfocus="this.value=''" value="Catregory">
+          <input type="text" id="moneyBar" onfocus="this.value=''" value="Cost(using + and - to indicate)">
+           <!-- -->
+          <button id="addBtn">Add</button>
         </div>
+       
+
+        
        
         <!--It contains all record entered by user-->
         <div class="row"></div>
           <div class="suggestionContainer">
             <!--Start Add New Record here-->
-            
+            <div class="suggestionBlock">
+
+              <button id="suggestionUseBtn">suggestion Name</button>
+
+
+            </div>
           </div>
         </div>
 
-        <!-- -->
-       <button id="add">Add</button>
+       
 
       </div>
 
