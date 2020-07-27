@@ -2,9 +2,28 @@ const addBtn = document.getElementById('addBtn');
 const namingBar = document.getElementById('namingBar');
 const categoryBar = document.getElementById('categoryBar');
 const moneyBar = document.getElementById('moneyBar');
-const { appendFile, readFile} = require('fs');
-const path = './Data/'
+const suggestionContainer = document.getElementById('suggestionContainer');
+const fs = require('fs');
+const readline = require('readline');
+const dataStoreSystem = require('./storeRecordData.js');
 
+
+
+
+// First instantiate the class
+const recordStoreSystem = new dataStoreSystem({
+    // We'll call our data file 'user-preferences'
+    configName: 'user-record',
+    defaults: {
+        record:[
+            //some stored examples
+                {"name":"restaurant", "categoryBar":"food"},
+                {"name":"toy", "categoryBar":"toy"}
+            ]
+    }
+  });
+
+  
 window.onload = ()=>{
 
 
@@ -23,8 +42,9 @@ window.onload = ()=>{
 
 
 addBtn.onclick = e => {
-    saveRecordToFile("recordNaming",namingBar.value);
-    saveRecordToFile("categoryNaming",categoryBar.value);
+
+    recordStoreSystem.addToArray('record',  {"name":namingBar.value, "categoryBar":categoryBar.value});
+
 };
 
 
@@ -32,9 +52,22 @@ addBtn.onclick = e => {
 function giveSuggestionforRecordNaming(inputName){
 
 
+    let recentRecord = recordStoreSystem.get('record');
+
+    console.log(recentRecord);
+    suggestionContainer.innerHTML = '';
+
+    for (i = 0; i < recentRecord.length; i++) {
+        suggestionContainer.innerHTML += `<div class="suggestionBlock"><button id="suggestionUseBtn">${recentRecord[i].name}</button></div>`;
+      }
+
+
+    
+
+
 }
 
-
+ 
 
 //this function will put suggestions to the suggestionContainer div
 function giveSuggestionforCategoryNaming(inputName){
@@ -42,23 +75,5 @@ function giveSuggestionforCategoryNaming(inputName){
 
 }
 
-function saveRecordToFile(nameOfTheFile,content){
 
 
- 
-    appendFile(path + `${nameOfTheFile}.txt`, `${content}\n`
-    , function (err) {
-        if (err) throw err;
-        console.log('Updated!');
-     });
-
-}
-
-//this function returns txt file data as an array
-async function readFile(fileName){
-    var textByLine;
-    fs.readFile(path + `${fileName}.txt`, function(err, data){
-        textByLine = data.split("\n");
-    });
-    return textByLine;
-}
