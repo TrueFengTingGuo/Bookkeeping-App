@@ -13,7 +13,7 @@
     <!--Start record-->
     <section class="record">
       <div class="container">
-          <div class="item_slider">
+          <div class="item_slider" id="recordContainer">
               <!--add new item here-->
 
 
@@ -68,7 +68,7 @@
     <section class="total cost">
 
       <div class="record_Total">
-        <h1>Total Cost</h1>
+        <h1 id="totalCost">Total Cost</h1>
       </div>
 
 
@@ -85,8 +85,8 @@
 
           <input type="text" id="namingBar" onfocus="this.value=''" value="Name">
           <input type="text" id="categoryBar" onfocus="this.value=''" value="Catregory">
-          <input type="text" id="DateBar" onfocus="this.value=''" value="Date">
-          <input type="text" id="moneyBar" onfocus="this.value=''" value="Cost(using + and - to indicate)">
+          <input type="date" id="DateBar" onfocus="this.value=''"value="2018-12-31">
+          <input type="text" id="moneyBar" onfocus="this.value=''" value="0">
            <!-- -->
           <button id="addBtn">Add</button>
         </div>
