@@ -134,9 +134,23 @@ function displayRecord(){
                 <h1 class="record_description" style="font-size:2vw;">${sortable[i][0]}</h1>
                 <h1 class="record_date" style="font-size:2vw;">${sortable[i][1]}</h1>
                 <h1 class="record_amount" style="font-size:2vw;">${sortable[i][3]}</h1>
-                <button class="record_delete" id="Delete">Delete</button>
+                <input type="button" value = "Delete" onClick="deleteRecord('${sortable[i][0]}','${sortable[i][1]}','${sortable[i][3]}')" />
             </div>`;
     }
 
     totalCostDispplay.innerHTML = `Total Cost: ${totalCost}`;
+}
+
+
+function deleteRecord(description,date,amount){
+    let arrayOfInfo = [];
+
+    arrayOfInfo.push(description);
+    arrayOfInfo.push(date);
+    arrayOfInfo.push(amount);
+
+    recordStoreSystem.findAndDelete('record',arrayOfInfo);
+
+    displayRecord();
+
 }

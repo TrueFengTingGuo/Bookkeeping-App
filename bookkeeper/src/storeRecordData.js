@@ -43,6 +43,43 @@ class Store {
     }
 
   }
+
+  //find the sepcified record to delete
+  findAndDelete(key,arrayOfInfoToLook){
+
+    let arrayOfData = this.data[key];
+
+    
+    //find difference
+    for (let indexOfSingleData = 0; indexOfSingleData < arrayOfData.length; indexOfSingleData++) {
+
+
+      //recursiveToFindDiff will the difference and return true if there is a difference
+      if(!recursiveToFindDiff(Object.values(this.data[key][indexOfSingleData]),arrayOfInfoToLook)){
+        console.log("found it");
+
+        //delete the record form the data
+        if (indexOfSingleData > -1) {
+          this.data[key].splice(indexOfSingleData, 1);
+          console.log("deleted successfully");
+          break;
+        }
+      }
+    }
+
+
+    //save data
+    try {
+
+      fs.writeFileSync(this.path, JSON.stringify(this.data));
+
+    } catch (err) {
+      console.log('Error writing Metadata.json:' + err.message)
+    }
+
+  }
+
+
 }
 
 function parseDataFile(filePath, defaults) {
@@ -55,6 +92,43 @@ function parseDataFile(filePath, defaults) {
     return defaults;
   }
 }
+
+
+//this function will search for difference between two provided arrays
+function recursiveToFindDiff(recordToLook, arrayOfInfoToLook){
+  if(arrayOfInfoToLook === undefined || arrayOfInfoToLook.length == 0){
+
+    //return fasle if there is no difference between the data and the info is provided
+    return false;
+  }
+  else if((arrayOfInfoToLook.length != 0 && recordToLook.length == 0) || (arrayOfInfoToLook !== undefined && recordToLook === undefined)){
+    //retur n true if there is a difference between two 
+    return true;
+  }
+  
+
+  if(recordToLook[0] == arrayOfInfoToLook[0]){
+
+    //take out the first element of each array cause the comparsion is over
+    recordToLook.shift();
+    arrayOfInfoToLook.shift();
+    recursiveToFindDiff(recordToLook,arrayOfInfoToLook);
+
+  }
+  else {
+
+    //since the record doesnt have it, go to next element see if there is a same one
+    recordToLook.shift()
+    recursiveToFindDiff(recordToLook,arrayOfInfoToLook);
+  }
+
+
+}
+
+
+
+
+
 
 // expose the class
 module.exports = Store;
