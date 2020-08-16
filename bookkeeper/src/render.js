@@ -1,3 +1,9 @@
+//these are the var which is always const
+const name = "name";
+const category = "category";
+
+
+
 const addBtn = document.getElementById('addBtn');
 const namingBar = document.getElementById('namingBar');
 const categoryBar = document.getElementById('categoryBar');
@@ -33,12 +39,12 @@ window.onload = ()=>{
     displayRecord();
     //adding quick searching for name of the record
     namingBar.addEventListener('input',()=>{
-        giveSuggestionforNaming(namingBar.value,'name');
+        giveSuggestionforNaming(namingBar.value,name);
 
     });
 
     categoryBar.addEventListener('input',()=>{
-        giveSuggestionforNaming(categoryBar.value,'category');
+        giveSuggestionforNaming(categoryBar.value,category);
 
     });
 
@@ -68,11 +74,12 @@ function giveSuggestionforNaming(inputName,sectionToLook){
     //sorting record with order (string Similarity)
     for (i = 0; i < recentRecord.length; i++) {
 
+
         let similarity = stringSimilarity.compareTwoStrings(inputName, recentRecord[i][sectionToLook]); 
         
         if(similarity >= 0.3){
             
-            sortable.push([recentRecord[i].name,similarity]);
+            sortable.push([recentRecord[i][sectionToLook],similarity]);
         }
         
     }
@@ -81,13 +88,18 @@ function giveSuggestionforNaming(inputName,sectionToLook){
         return a[1] - b[1];
     });
 
-    for (i = 0; i < sortable.length; i++) {
 
-        suggestionContainer.innerHTML += `<div class="suggestionBlock"><button id="suggestionUseBtn">${sortable[i][0]}</button></div>`;
+   uniqueArray = multiDimensionalUnique(sortable);
+
+   //add all possible suggestion to the field
+    for (i = 0; i < uniqueArray.length; i++) {
+
+        suggestionContainer.innerHTML += `<div class="suggestionBlock">
+                                            <button  onClick="addSuggestionNameToBlank('${uniqueArray[i][0]}','${sectionToLook}')">
+                                                ${uniqueArray[i][0]}
+                                            </button>
+                                        </div>`;
     }
-
-
-
 }
 
 //display all record in the window
@@ -113,6 +125,7 @@ function displayRecord(){
     //comparsion function for date
     sortable.sort(function(a, b) {
 
+        //getting date from two record
         let d1 = new Date(a[1]);
         let d2 = new Date(b[1]);
         if(d1 < d2){
@@ -145,6 +158,7 @@ function displayRecord(){
 function deleteRecord(description,date,amount){
     let arrayOfInfo = [];
 
+    //collect info to an array
     arrayOfInfo.push(description);
     arrayOfInfo.push(date);
     arrayOfInfo.push(amount);
@@ -152,5 +166,47 @@ function deleteRecord(description,date,amount){
     recordStoreSystem.findAndDelete('record',arrayOfInfo);
 
     displayRecord();
+
+}
+
+//finding duplicates from a multidimensions array
+function multiDimensionalUnique(inputArray) {
+
+    var uniques = [];
+    var Found = {};
+    for(var i = 0, l = inputArray.length; i < l; i++) {
+
+        //all input are modified into string
+        var stringified = JSON.stringify(inputArray[i]);
+        //console.log(stringified);
+        if(Found[stringified]) { 
+            continue;
+        }
+
+        //this function will first store first found item into an array
+        uniques.push(inputArray[i]);
+        Found[stringified] = true;
+    }
+
+    //console.log(uniques);
+    return uniques;
+}
+
+//this function will add suggested word into a text field
+//sectionToLook is the name of the input field
+//SuggestionNInfo is the info which will add to the inputfield
+function addSuggestionNameToBlank(SuggestionInfo,sectionToLook){
+
+
+    //this will save all crosponding textfields
+    var sectionDic = {
+
+        name: namingBar,
+        category: categoryBar
+    };
+
+
+    //change the textfield based on the info that button provided
+    sectionDic[sectionToLook].value = SuggestionInfo;
 
 }
