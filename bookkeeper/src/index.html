@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset="UTF-8">
-    <title>Hello World!</title>
+    <title>Book Keeper</title>
     <link rel="stylesheet" href="index.css">
     <script defer src="render.js" ></script>
 
@@ -12,6 +12,9 @@
     
     <!--Start record-->
     <section class="record">
+
+      <h5 id="recordTitle">RECORD</h5>
+
       <div class="container">
           <div class="item_slider" id="recordContainer">
               <!--add new item here-->
@@ -26,7 +29,7 @@
 
 
 
-    <section class="total cost">
+    <section class="total_cost">
 
       <div class="record_Total">
         <h1 id="totalCost">Total Cost</h1>
@@ -39,33 +42,24 @@
 
     <!--Start Add New Record-->
     <section class="add_new_Record">
+      <h5> new record</h5>
       <div class="container">
 
         <!--Two text enter bar here, one for naming of the record and one for catregory of the record, and money number-->
         <div class="fillingSection">
 
-          <input type="text" id="namingBar" onfocus="this.value=''" value="Name">
-          <input type="text" id="categoryBar" onfocus="this.value=''" value="Catregory">
-          <input type="date" id="DateBar" onfocus="this.value=''"value="2018-12-31">
-          <input type="text" id="moneyBar" onfocus="this.value=''" value="0">
+          <input type="text" list="namingBars" id="namingBar" onfocus=" this.value='' " value="Name">
+          <input type="text" list="categoryBars" id="categoryBar" onfocus=" this.value='' " value="Catregory">
+          <input type="date" id="DateBar" onfocus=" this.value='' "value="2018-12-31">
+          <input type="text" id="moneyBar" onfocus=" this.value='' " value="0">
+
+          <datalist id="namingBars">
+          </datalist>
+
+          <datalist id="categoryBars">
+          </datalist>
            <!-- -->
           <button id="addBtn">Add</button>
-        </div>
-       
-
-        
-       
-        <!--It contains all record entered by user-->
-        <div class="row"></div>
-          <div id="suggestionContainer">
-
-            <!--Start Add New Record here-->
-            <div class="suggestionBlock">
-              <button id="suggestionUseBtn">suggestion Name</button>
-            </div>
-
-
-          </div>
         </div>
 
        

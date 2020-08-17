@@ -2,8 +2,6 @@
 const name = "name";
 const category = "category";
 
-
-
 const addBtn = document.getElementById('addBtn');
 const namingBar = document.getElementById('namingBar');
 const categoryBar = document.getElementById('categoryBar');
@@ -12,13 +10,23 @@ const moneyBar = document.getElementById('moneyBar');
 const suggestionContainer = document.getElementById('suggestionContainer');
 const recordContainer = document.getElementById('recordContainer');
 const totalCostDispplay = document.getElementById('totalCost');
+const namingBars = document.getElementById('namingBars');
+const categoryBars = document.getElementById('categoryBars');
 
 const fs = require('fs');
 const readline = require('readline');
 const stringSimilarity = require('string-similarity');
 const dataStoreSystem = require('./storeRecordData.js');
 
+//custom title bar
+const customTitlebar = require('custom-electron-titlebar');
 
+
+let MyTitleBar = new customTitlebar.Titlebar({
+    backgroundColor: customTitlebar.Color.fromHex('#03a9f4')
+});
+
+MyTitleBar.updateTitle('Our Code World Tutorials Rock !');
 
 
 // First instantiate the class
@@ -66,10 +74,19 @@ function giveSuggestionforNaming(inputName,sectionToLook){
 
     let recentRecord = recordStoreSystem.get('record');
     let sortable = [];
-    
+
+
+    //this will save all crosponding textfields
+    let sectionDic = {
+
+        name: namingBars,
+        category: categoryBars
+        
+    };
+
 
     //empty the html eveytime use is typing
-    suggestionContainer.innerHTML = '';
+    sectionDic[sectionToLook].innerHTML = '';
 
     //sorting record with order (string Similarity)
     for (i = 0; i < recentRecord.length; i++) {
@@ -94,11 +111,7 @@ function giveSuggestionforNaming(inputName,sectionToLook){
    //add all possible suggestion to the field
     for (i = 0; i < uniqueArray.length; i++) {
 
-        suggestionContainer.innerHTML += `<div class="suggestionBlock">
-                                            <button  onClick="addSuggestionNameToBlank('${uniqueArray[i][0]}','${sectionToLook}')">
-                                                ${uniqueArray[i][0]}
-                                            </button>
-                                        </div>`;
+        sectionDic[sectionToLook].innerHTML += `<option value=" ${uniqueArray[i][0]} ">`;
     }
 }
 
@@ -146,7 +159,7 @@ function displayRecord(){
             `<div class="single_record">
                 <h1 class="record_description" style="font-size:2vw;">${sortable[i][0]}</h1>
                 <h1 class="record_date" style="font-size:2vw;">${sortable[i][1]}</h1>
-                <h1 class="record_amount" style="font-size:2vw;">${sortable[i][3]}</h1>
+                <h1 class="record_amount" style="font-size:2vw;">$ ${sortable[i][3]}</h1>
                 <input type="button" value = "Delete" onClick="deleteRecord('${sortable[i][0]}','${sortable[i][1]}','${sortable[i][3]}')" />
             </div>`;
     }
@@ -190,23 +203,4 @@ function multiDimensionalUnique(inputArray) {
 
     //console.log(uniques);
     return uniques;
-}
-
-//this function will add suggested word into a text field
-//sectionToLook is the name of the input field
-//SuggestionNInfo is the info which will add to the inputfield
-function addSuggestionNameToBlank(SuggestionInfo,sectionToLook){
-
-
-    //this will save all crosponding textfields
-    var sectionDic = {
-
-        name: namingBar,
-        category: categoryBar
-    };
-
-
-    //change the textfield based on the info that button provided
-    sectionDic[sectionToLook].value = SuggestionInfo;
-
 }
