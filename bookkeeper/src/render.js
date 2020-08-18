@@ -18,15 +18,6 @@ const readline = require('readline');
 const stringSimilarity = require('string-similarity');
 const dataStoreSystem = require('./storeRecordData.js');
 
-//custom title bar
-const customTitlebar = require('custom-electron-titlebar');
-
-
-let MyTitleBar = new customTitlebar.Titlebar({
-    backgroundColor: customTitlebar.Color.fromHex('#03a9f4')
-});
-
-MyTitleBar.updateTitle('Our Code World Tutorials Rock !');
 
 
 // First instantiate the class
@@ -157,10 +148,11 @@ function displayRecord(){
 
         recordContainer.innerHTML += 
             `<div class="single_record">
-                <h1 class="record_description" style="font-size:2vw;">${sortable[i][0]}</h1>
-                <h1 class="record_date" style="font-size:2vw;">${sortable[i][1]}</h1>
-                <h1 class="record_amount" style="font-size:2vw;">$ ${sortable[i][3]}</h1>
-                <input type="button" value = "Delete" onClick="deleteRecord('${sortable[i][0]}','${sortable[i][1]}','${sortable[i][3]}')" />
+                <h1 class="record_description" ">${sortable[i][0]}</h1>
+                <h1 class="record_date" ">${sortable[i][1]}</h1>
+                <h1 class="record_amount" ">$ ${sortable[i][3]}</h1>
+                <button onClick="deleteRecord('${sortable[i][0]}','${sortable[i][1]}','${sortable[i][3]}')"> <span>More</span> </button>
+                
             </div>`;
     }
 

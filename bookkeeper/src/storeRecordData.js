@@ -53,11 +53,13 @@ class Store {
     //find difference
     for (let indexOfSingleData = 0; indexOfSingleData < arrayOfData.length; indexOfSingleData++) {
 
-
+     
       //recursiveToFindDiff will the difference and return true if there is a difference
       if(!recursiveToFindDiff(Object.values(this.data[key][indexOfSingleData]),arrayOfInfoToLook)){
-        console.log("found it");
-
+       
+        //console.log("data:  " + this.data[key][indexOfSingleData]);
+        //console.log("arrayOfInfoToLook:" + arrayOfInfoToLook);
+        //console.log("indexOfSingleData:" + indexOfSingleData);
         //delete the record form the data
         if (indexOfSingleData > -1) {
           this.data[key].splice(indexOfSingleData, 1);
@@ -95,15 +97,18 @@ function parseDataFile(filePath, defaults) {
 
 
 //this function will search for difference between two provided arrays
+//if all info that "arrayOfInfoToLook" is provided are correct and in order, then it returns false
 function recursiveToFindDiff(recordToLook, arrayOfInfoToLook){
-  if(arrayOfInfoToLook === undefined || arrayOfInfoToLook.length == 0){
 
-    //return fasle if there is no difference between the data and the info is provided
-    return false;
-  }
-  else if((arrayOfInfoToLook.length != 0 && recordToLook.length == 0) || (arrayOfInfoToLook !== undefined && recordToLook === undefined)){
-    //retur n true if there is a difference between two 
+  if((recordToLook.length === 0 && arrayOfInfoToLook.length !== 0)|| (arrayOfInfoToLook === undefined || recordToLook === undefined)){
+
+    //return true if there is difference between the data and the info is provided
     return true;
+  }
+  else if(arrayOfInfoToLook.length === 0 ){
+
+    //retur false if there is no difference between two 
+    return false;
   }
   
 
@@ -122,7 +127,7 @@ function recursiveToFindDiff(recordToLook, arrayOfInfoToLook){
     recursiveToFindDiff(recordToLook,arrayOfInfoToLook);
   }
 
-
+  return true;
 }
 
 
