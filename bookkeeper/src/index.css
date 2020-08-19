@@ -41,18 +41,18 @@ body {
 }
 
 
-body .record{
+.record{
   height: 70%;
   background-color: rgb(55, 68, 77);
 
 }
 
-body .record .recordTitle{
+.record .recordTitle{
   max-height: 10%;
 
 }
 
-body .record .container{
+.record .container{
   max-height: 90%;
   overflow:scroll;
   overflow-x: hidden;
@@ -60,7 +60,7 @@ body .record .container{
   
 }
 
-body .record .container h1{
+.record .container h1{
 
   font-size: 15px;
   font-weight: 600;
@@ -68,56 +68,9 @@ body .record .container h1{
   padding: 0;
 }
 
-body .record .container .item_slider .single_record button{
-
-  display: inline-block;
-  border-radius: 4px;
-  background-color: rgb(55, 78, 94);
-  border: none;
-  color: #FFFFFF;
-  text-align: center;
-  font-size: 15px;
-
-  width: 80px;
-  transition: all 0.5s;
-  cursor: pointer;
-
-}
 
 
-body .record .container .item_slider .single_record button span{
-
-  cursor: pointer;
-  display: inline-block;
-  position: relative;
-  transition: 0.5s;
- 
-}
-
-
-body .record .container .item_slider .single_record button span::after{
-
-  content: '\00bb';
-  position: absolute;
-  opacity: 0;
-  top: 0;
-  right: -5px;
-  transition: 0.5s;
- 
-}
-
-body .record .container .item_slider .single_record button:hover span {
-  padding-right: 15px;
-}
-
-body .record .container .item_slider .single_record button:hover span:after {
-  opacity: 1;
-  right: 0;
-}
-
-
-
-body .record .container .item_slider .single_record{
+.record .container .item_slider .single_record{
   margin: auto;
   height:50px;
   max-width: 100%;
@@ -128,10 +81,97 @@ body .record .container .item_slider .single_record{
 }
 
 
-body .record .container .item_slider .single_record > * {
+.record .container .item_slider .single_record > * {
   margin: 10px 0;
   position:relative;
 
+}
+
+
+.record .container .item_slider .single_record .dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.record .container .item_slider .single_record .dropbtn{
+
+  display: inline-block;
+  border-radius: 4px;
+  background-color: rgb(55, 78, 94);
+  border: none;
+  color: #FFFFFF;
+  text-align: center;
+  font-size: 15px;
+
+  width: 70px;
+  transition: all 0.5s;
+  cursor: pointer;
+
+}
+
+
+.record .container .item_slider .single_record .dropbtn span{
+
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+ 
+}
+
+
+.record .container .item_slider .single_record .dropbtn span::after{
+
+  content: '\2039';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  left: -5px;
+  transition: 0.5s;
+ 
+}
+
+.record .container .item_slider .single_record .dropbtn:hover span {
+  padding-left: 15px;
+}
+
+.record .container .item_slider .single_record .dropbtn:hover span:after {
+  opacity: 1;
+  left: 0;
+}
+
+
+
+.record .container .item_slider .single_record .dropdown-content {
+  display: none;
+  position: absolute;
+  left: -50px;
+  background-color: #353a49;
+  min-width: 60px;
+  z-index: 1;
+
+
+}
+
+.record .container .item_slider .single_record  .dropdown:hover .dropdown-content{
+  display: block;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+
+.record .container .item_slider .single_record .dropdown-content button{
+  background-color: #353a49;
+  color: white;
+  padding: 5px 5px;
+  text-decoration: none;
+  display: block;
+  border: none;
+  width: 100%;
+}
+
+.record .container .item_slider .single_record .dropdown-content button:hover{
+  background-color: #346994;
 }
 
 

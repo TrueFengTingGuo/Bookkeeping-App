@@ -102,7 +102,7 @@ function giveSuggestionforNaming(inputName,sectionToLook){
    //add all possible suggestion to the field
     for (i = 0; i < uniqueArray.length; i++) {
 
-        sectionDic[sectionToLook].innerHTML += `<option value=" ${uniqueArray[i][0]} ">`;
+        sectionDic[sectionToLook].innerHTML += `<option value="${uniqueArray[i][0]}">`;
     }
 }
 
@@ -151,8 +151,15 @@ function displayRecord(){
                 <h1 class="record_description" ">${sortable[i][0]}</h1>
                 <h1 class="record_date" ">${sortable[i][1]}</h1>
                 <h1 class="record_amount" ">$ ${sortable[i][3]}</h1>
-                <button onClick="deleteRecord('${sortable[i][0]}','${sortable[i][1]}','${sortable[i][3]}')"> <span>More</span> </button>
-                
+                <div class="dropdown">
+                    
+                    <div class="dropdown-content"> 
+                        <button class="dropdownMark">Mark</button>
+                        <button onClick="deleteRecord('${sortable[i][0]}','${sortable[i][1]}','${sortable[i][3]}')">Delete</button>
+                        
+                    </div>
+                    <button class="dropbtn"> <span>More</span> </button>
+                </div>
             </div>`;
     }
 

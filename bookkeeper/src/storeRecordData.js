@@ -117,16 +117,17 @@ function recursiveToFindDiff(recordToLook, arrayOfInfoToLook){
     //take out the first element of each array cause the comparsion is over
     recordToLook.shift();
     arrayOfInfoToLook.shift();
-    recursiveToFindDiff(recordToLook,arrayOfInfoToLook);
+    return recursiveToFindDiff(recordToLook,arrayOfInfoToLook);
 
   }
   else {
 
     //since the record doesnt have it, go to next element see if there is a same one
     recordToLook.shift()
-    recursiveToFindDiff(recordToLook,arrayOfInfoToLook);
+    return recursiveToFindDiff(recordToLook,arrayOfInfoToLook);
   }
 
+  console.log("Error");
   return true;
 }
 
