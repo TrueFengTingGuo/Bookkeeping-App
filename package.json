@@ -18,7 +18,7 @@
   },
   "homepage": "https://github.com/TrueFengTingGuo/Bookkeeping-App#readme",
   "devDependencies": {
-    "electron": "^9.1.1"
+    "electron": "^18.3.7"
   },
   "dependencies": {
     "string-similarity": "^4.0.1"
